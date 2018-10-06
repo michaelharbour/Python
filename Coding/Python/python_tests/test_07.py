@@ -1,3 +1,5 @@
+'''This is another in a series of test files to get my
+Python skills a-wrokin'''
 # usa_gold = 50
 # ussr_gold = 24
 # romainia_gold = 1
@@ -28,3 +30,5 @@ fortunes = ['You are a winner' ,
             'Don\'t look at me, I am just a computer program and have no mythical powers']
 
             print(random.choice(fortunes))
+
+            
