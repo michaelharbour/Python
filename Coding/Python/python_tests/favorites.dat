@@ -1,0 +1,30 @@
+(dp0
+S'places to eat'
+p1
+S"Chano's"
+p2
+sS'kids'
+p3
+(lp4
+S'Janglo'
+p5
+aS'Jaxon'
+p6
+aS'Ajax'
+p7
+aS'Rosie'
+p8
+aS'Zuzu'
+p9
+asS'sports teams'
+p10
+(lp11
+S'Lakers'
+p12
+aS'Dodgers'
+p13
+asS'wife'
+p14
+S'Ariella'
+p15
+s.
