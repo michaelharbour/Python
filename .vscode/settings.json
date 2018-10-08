@@ -1,0 +1,15 @@
+{
+    "python.linting.pylintEnabled": false,
+    "python.pythonPath": "C:\\Users\\mharbourca\\AppData\\Local\\Programs\\Python\\Python37-32\\python.exe",
+    "python.unitTest.unittestArgs": [
+        "-v",
+        "-s",
+        "./Coding",
+        "-p",
+        "*test.py"
+    ],
+    "python.unitTest.pyTestEnabled": false,
+    "python.unitTest.nosetestsEnabled": false,
+    "python.unitTest.unittestEnabled": false,
+    "python.unitTest.promptToConfigure": false
+}
