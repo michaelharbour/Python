@@ -1,3 +1,6 @@
+'''This is a general test page to jot down basic python scirpts and test
+while reading through various documentation, turtorial sites, etc.'''
+
 # usa_gold = 50
 # ussr_gold = 24
 # romainia_gold = 1
