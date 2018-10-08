@@ -7,3 +7,5 @@ romainia_gold += 1
 print(total_gold)
 
 print('\n\nJack Russel Terriers are not that smart.')
+
+print('Hmmm.... this file seems out of date')
