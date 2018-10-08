@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Frosh IMs
+{% endblock %}
+
+{% block body %}
+<h1>Register for Frosh IMs</h1>
+<form action={{ url_for('register') }}" method="post">
+    Name: <input name="name" type="text"/>
+    <br/>
+    Dorm:
+    <select name="dorm">
+        <option value="One">One</option>
+        <option value="Two">Two</option>
+        <option value="Three">Three</option>
+        <option value="Four">Four</option>
