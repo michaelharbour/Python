@@ -1,7 +1,7 @@
 '''This is a general test page to jot down basic python scirpts and test
 while reading through various documentation, turtorial sites, etc.
 
-adding one additional change'''
+adding one additional change.  Adding one more change'''
 
 # usa_gold = 50
 # ussr_gold = 24
