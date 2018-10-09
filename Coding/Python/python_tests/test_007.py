@@ -51,15 +51,15 @@
 #     n = raw_input('\nYou\'re in the Lost Forest.  Go Left or Right?\n')
 # print("\nYou got out of the Lost Forest!")
 
-# for n in range(10):
-#     print n+1, "\n"
+for n in range(10):
+    print(n+1, "\n")
 
 # mysum = 0
 # for i in range (7,10):
 #     mysum += i
 # print(mysum)
 
-mysum = 0
-for i in range(5, 11, 2):
-    mysum += i  
-print(mysum)
+# mysum = 0
+# for i in range(5, 11, 2):
+#     mysum += i  
+# print(mysum)
