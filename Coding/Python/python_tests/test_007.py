@@ -309,8 +309,8 @@ program'''
 # LISTS
 ####################################
 
-total = 0
-L = [1,2,3,4,5,6]
+# total = 0
+# L = [1,2,3,4,5,6]
 
 '''adds all the intergers togehter in the list'''
 
@@ -320,7 +320,49 @@ L = [1,2,3,4,5,6]
 
 '''same thing, but cleaner and more Pythonic'''
 
-for i in L:
-    total += i
-print(total)
+# for i in L:
+#     total += i
+# print(total)
+
+#########################
+# IN LINE FUNCTIONS 
+#########################
+
+# L.append(5) #Adds 5 to the end of the list
+# print(L)
+
+#########################
+# removing items from a list
+#############################
+
+'''Use del to remove a specific index from a list
+   Use pop to remove the last element of a list
+   Use remove to delete the first instance of the search parameter in a list'''
+
+# del(L[0])
+# print("I've removed the first item in the list, \n" + str(L))
+
+# L.pop()
+# print("Now I've removed the last, \n" + str(L))
+
+# L.remove(3)
+# print("Now I've removed 3 from the list, \n" + str(L))
+
+s = "I<3 cs"
+print(s)
+list(s)
+print(s)
+s.split('<')
+print(s)
+
+L = ['a', 'b', 'c']
+print(L)
+''.join(L)
+print(L)
+'_'.join(L)
+print(L)
+
+
+
+
 
