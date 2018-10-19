@@ -225,16 +225,12 @@
 but mine are lower here because I am working linearally through the MIT class *this is lesson 4,
 so I am treating this like the top of a program'''
 
-def is_even (i): # Here we have the keyword 'def', the name of the function 'is_even' and the number of parameters or args (i)
-    '''
-    Input: i, a positive int
-    Returns True if i is even, otherwise False
-    '''
+# def is_even (i): # Here we have the keyword 'def', the name of the function 'is_even' and the number of parameters or args (i)
     # This above is called a 'Specification Docstring'
     # Below is called the body.
     # print('Inside is even') # Run some commands
-    remainder =  i % 2
-    return remainder == 0 # 'return' is the keyword; we add an expression to evaluate and return
+    # remainder =  i % 2
+    # return remainder == 0 # 'return' is the keyword; we add an expression to evaluate and return
 
 #################
 # Scope
@@ -267,12 +263,64 @@ program'''
 # is_even_with_return(3)
 # print(is_even_with_return(3) )
 
-print('All numbers between 0 and 20 : even or not')
-for i in range(20):
-    i +=1
-    if is_even(i):
-        print(str(i) + ' even')
-    else:
-        print(str(i) + ' odd')
+# print('All numbers between 0 and 20 : even or not')
+# for i in range(20):
+#     i +=1
+#     if is_even(i):
+#         print(str(i) + ' even')
+#     else:
+#         print(str(i) + ' odd')
 
 # Testing bto012 env to upload to personal repos
+
+####################################
+# TUPLES
+####################################
+
+
+# def get_data(aTuple):
+#     nums = ()
+#     words = ()
+#     for t in aTuple:
+#         nums = nums + (t[0],)
+#         if t[1] not in words:
+#             words = words + (t[1],)
+#     min_n = min(nums)
+#     max_n = max(nums)
+#     unique_words = len(words)
+#     return (min_n, max_n, unique_words)
+
+#my_tuple = ((1,"alpha"),(5,"beta"),(10,"gamma"),(17,"gamma"),(-5,"omega"))
+
+# tswift = ((2014, "Katy"),
+#           (2014, "harry"),
+#           (2012,"Jake"),
+#           (2010, "Jake"),
+#           (2008, "Joe"))
+
+# (min_year, max_year, num_people) = get_data(tswift)
+
+# print("From " + str(min_year) + " to " + str(max_year) + \
+#         ",Taylor Swift wrote songs about " + str(num_people) + " people!")
+
+# print("testing")
+
+####################################
+# LISTS
+####################################
+
+total = 0
+L = [1,2,3,4,5,6]
+
+'''adds all the intergers togehter in the list'''
+
+# for i in range (len(L)):
+#     total += L[i]
+# print(total)
+
+'''same thing, but cleaner and more Pythonic'''
+
+for i in L:
+    total += i
+print(total)
+
