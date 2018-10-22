@@ -348,19 +348,18 @@ program'''
 # L.remove(3)
 # print("Now I've removed 3 from the list, \n" + str(L))
 
+#########################
+# TURNING STRINGS INTO LISTS AND VICE VERSA
+#############################
 s = "I<3 cs"
 print(s)
-list(s)
-print(s)
-s.split('<')
-print(s)
+print(list(s))
+print(s.split('<'))
 
 L = ['a', 'b', 'c']
 print(L)
-''.join(L)
-print(L)
-'_'.join(L)
-print(L)
+print(''.join(L))
+print('_'.join(L))
 
 
 
