@@ -351,17 +351,21 @@ program'''
 #########################
 # TURNING STRINGS INTO LISTS AND VICE VERSA
 #############################
-s = "I<3 cs"
-print(s)
-print(list(s))
-print(s.split('<'))
+# s = "I<3 cs"
+# print(s)
+# print(list(s))
+# print(s.split('<'))
 
-L = ['a', 'b', 'c']
+# L = ['a', 'b', 'c']
+# print(L)
+# print(''.join(L))
+# print('_'.join(L))
+
+L = [9,6,0,3]
 print(L)
-print(''.join(L))
-print('_'.join(L))
-
-
+print(sorted(L))
+print(L.sort())
+print(L.reverse)
 
 
 
