@@ -361,11 +361,138 @@ program'''
 # print(''.join(L))
 # print('_'.join(L))
 
-L = [9,6,0,3]
-print(L)
-print(sorted(L))
-print(L.sort())
-print(L.reverse)
+# L = [9,6,0,3]
+# print(L)
+# print(sorted(L))
+# print(L)
+# x = L.sort()
+# print(x)
+# y = L.reverse() 
+# print(y)
 
 
+#########################
+# LISTS ARE MUTABLE AND LINKS CHANGE THE ORIGINAL
+#############################
 
+# a = 1
+# b = 2
+# print(a)
+# print(b)
+
+# warm = ['red', 'yellow', 'orange']
+# hot = warm
+# hot.append('pink')
+# print(hot)
+# print(warm)
+
+# '''make a copy of a list that won't be linked'''
+
+# cool = ['blue', 'green', 'grey']
+# chill = cool[:]
+# chill.append('black')
+# print(chill)
+# print(cool)
+
+# warm = ['red', 'yellow', 'orange']
+# sortedwarm = warm.sort()  
+# print(warm)
+# print(sortedwarm)
+
+# cool = ['grey', 'green', 'blue']
+# sortedcool = sorted(cool)
+# print(cool)
+# print(sortedcool)
+
+# warm = ['yellow', 'orange']
+# hot = ['red']
+# brightcolors = [warm]
+# brightcolors.append(hot)
+# print(brightcolors)
+# hot.append('pink')
+# print(hot)
+# print(brightcolors)
+
+'''Using a list copy to work off of so your are not changing the list as you go'''
+
+# def remove_dups (L1,L2):
+#     L1_copy = L1[:]
+#     for e in L1_copy:
+#         if e in L2:
+#             L1.remove(e)
+
+# X1 = [1,2,3,4]
+# X2 = [1,2,5,6]
+
+# print(X1)
+# print(X2)
+
+# remove_dups(X1,X2)
+
+# print(X1)
+# print(X2)
+
+'''strings and tuples parse differently so you have to watch them'''
+
+# def always_sunny(t1,t2):
+#     '''t1 and t2 are not empty'''
+#     sun = ("sunny", "sun") # a tuple
+#     first = t1[0] + t2[0]
+#     return(sun[0], first)
+
+# print(always_sunny(('cloudy'),('cold',))) #Trick here is that ('cold',), the comma denote that this is a single elem tuple, not a string
+
+# L = ["life", "answer", 42, 0]
+# for thing in L:
+#     if thing == 0:
+#         L[thing] = "universe"
+#     elif thing == 42:
+#         L[1] = "everything"
+
+# print(L)
+
+'''More on mutating strings'''
+
+# L1 = ["bacon", "eggs"]
+# L2 = ["toast", "jam"]
+# brunch = L1
+# L1.append("juice") # mutates original list so that brunch is now modified as well.
+# brunch.extend(L2) # will add the elements of the list to the end, as opposed to the full list which append() would do.
+# print(brunch)
+
+#########################
+# RECURSION, DICTIONARIES & THE IDEA OF RECURSION
+############################
+
+'''Countdowm'''
+
+# i=10
+# while(i>0):
+#    print i
+#    i-=1
+
+
+'''Here we are creating a silple multiply fuction to show the idea of recursion'''
+
+# def my_mult(a,b):
+#     result = 0
+#     while b > 0:
+#         # print(b)
+#         # print(result)
+#         result+=int(a)
+#         b-=1
+#     print(result)
+
+# my_mult(5,10)
+
+'''Here we are using a recursive solution to do the same calculation'''
+
+def my_mult2(a,b):
+    if b == 1:
+        print("I'm in the first loop!")
+        return a
+    else:
+        print("A is now equal to " + str(a) + ", while b is now equal to " + str(b))
+        return a + my_mult2(a, b-1)
+
+print(my_mult2(5,10))
