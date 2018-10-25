@@ -485,14 +485,66 @@ program'''
 
 # my_mult(5,10)
 
-'''Here we are using a recursive solution to do the same calculation'''
+'''Here we are using a recursive solution to do the same calculation
+RECURSION IS FUNKY!'''
 
-def my_mult2(a,b):
-    if b == 1:
-        print("I'm in the first loop!")
-        return a
+# def my_mult2(a,b):
+#     if b == 1:
+#         print("I'm in the last loop!")
+#         print a
+#         return a
+#     else:
+#         # val = a + my_mult2(a, b-1)
+#         print("A is now equal to " + str(a) + ", while b is now equal to " + str(b))
+#         return a + my_mult2(a, b-1)
+        
+
+# print(my_mult2(5,10))
+
+'''perhaps a bit easier to understand are factorals using recursion.  This is the process in which you want
+a factoral of some number (let's say 5), so that means 5*4*3*2*1 (or 120).  We know that our base case in the 
+example of factorals are 1! returns 1 and 0! returns 1, so those will be our base conditions'''
+
+# def fact(n):
+#     if n == 0:
+#         return 1
+#     else:
+#         return n * fact(n-1)
+ 
+# print(fact(0))
+# print(fact(5))
+
+# Here is a comparison between an interitive solution and a recursive one
+
+# def get_recursive_factoral(n):
+#     if n < 0:
+#         return -1
+#     elif n < 2:
+#         return 1
+#     else:
+#         return n * get_recursive_factoral(n-1)
+
+# def get_iterative_factoral(n):
+#     if n < 0:
+#         return -1
+#     else:
+#         fact = 1
+#         for i in range(1, n+1):
+#             fact *= i
+#         return fact
+
+# print(get_recursive_factoral(4))
+# print(get_iterative_factoral(4))
+
+'''Use recurussion to draw out the Fibonacci sequence'''
+
+def fib(n):
+    if n <= 2:
+        return 1
     else:
-        print("A is now equal to " + str(a) + ", while b is now equal to " + str(b))
-        return a + my_mult2(a, b-1)
+        return fib(n-1) + fib(n-2)
 
-print(my_mult2(5,10))
+# print(fib(10))
+
+for i in range(1,10):
+    print(fib(i))
