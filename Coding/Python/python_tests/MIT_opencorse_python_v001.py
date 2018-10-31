@@ -538,13 +538,120 @@ example of factorals are 1! returns 1 and 0! returns 1, so those will be our bas
 
 '''Use recurussion to draw out the Fibonacci sequence'''
 
-def fib(n):
-    if n <= 2:
-        return 1
+# def fib(n):
+#     if n <= 2:
+#         return 1
+#     else:
+#         return fib(n-1) + fib(n-2)
+
+# # print(fib(10))
+
+# for i in range(1,10):
+#     print(fib(i))
+
+'''palindrome check (is a phrase the same backwards as forwards'''
+
+# def isPalendromes(s):
+
+#     def toChars(s):
+#         s = s.lower()
+#         ans = ''
+#         for c in s:
+#             if c in 'abcdefghijklmnopqrstuvwxyz':
+#                 ans = ans + c
+#         return ans
+
+#     def isPal(s):
+#         if len(s) <= 1:
+#             return True
+#         else:
+#             return s[0] == s[-1] and isPal(s[1:-1])
+#     return isPal(toChars(s))
+
+# print(isPalendromes('monkey is si yeknom'))
+
+'''using recursion twice to solve moving rings between towers problem
+   there are three towers with four disks stacked largest to smallest on one.
+      Your challenge is to move them one by one to another tower, never putting
+      a larger disk above a smaller one, until they are stacked, largest to smallest
+      on the new tower'''
+
+# def printMove(fr, to):
+#     print('move from' + str() + ' to ' + str(to))
+
+# def Towers(n, fr, to, spare):
+#     if n==1:
+#             printMove(fr, to)
+#     else:
+#         Towers(n-1, fr, spare, to)
+#         Towers(1, fr, to, spare)
+#         Towers(n-1. spare, to, fr)
+
+#########################################
+#  DICTIONARIES
+#########################################
+
+# def lyrics_to_frequencies(lyrics):
+#     myDict = {}
+#     for word in lyrics:
+#         if word in myDict:
+#             myDict[word] += 1
+#         else:
+#             myDict[word] = 1
+#     return myDict
+
+# she_loves_you = ['she', 'loves', 'you', 'yeah','yeah','yeah','she','loves',
+# 'you','yeah','yeah','yeah','You','think',"You've",'lost','your','love']
+
+# def most_common_words(freqs):
+#     values = freqs.values()
+#     best = max(values)
+#     words = []
+#     for k in freqs:
+#         if freqs[k] == best:
+#             words.append(k)
+#     return (words, best)
+
+''''This part was intended to walk the frequency dictionary and delete words if they were over the minTimes value,
+    append it to your result and print that out. His original script didn't make sense to me, so I commented it out and
+    made a simplified check to do the same thing... I think'''
+
+# def words_often(freqs, minTimes):
+#     result = []
+#     done = False
+#     while not done:
+#         temp = lyrics_to_frequencies((freqs))
+#         print(temp)
+#         for myKey in temp.keys():
+#             if temp[myKey] >= 2:
+#                 result.append(myKey)
+#         # if temp[1] >=  minTimes:
+#         #     print(temp[0])
+#         #     result.append(temp)
+#         #     print(result)
+#         #     for w in temp[0]:
+#         #         del(freqs[w])
+#             else:
+#                 done = True
+#     return result
+
+# print(lyrics_to_frequencies(she_loves_you))
+
+# print(most_common_words(lyrics_to_frequencies(she_loves_you)))
+
+# print(words_often(she_loves_you,5)) 
+
+'''How to do the fibonacci sequence more efficiently than using recursion with a dictionary.  The reason being that we end up calculating
+each step every time we run through the recursion.  Not a big deal for 5 steps, but for 1000 steps or 10000, that gets to be a lot of 
+redundant calculation'''
+
+def fib_efficient(n,d):
+    if n in d:
+        return d[n]
     else:
-        return fib(n-1) + fib(n-2)
+        ans = fib_efficient(n-1, d) + fib_efficient(n-2, d)
+        d[n] = ans
+        return ans
 
-# print(fib(10))
-
-for i in range(1,10):
-    print(fib(i))
+d = {1:1, 2:2}
+print(fib_efficient(6,d))
