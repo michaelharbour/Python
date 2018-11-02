@@ -645,13 +645,111 @@ example of factorals are 1! returns 1 and 0! returns 1, so those will be our bas
 each step every time we run through the recursion.  Not a big deal for 5 steps, but for 1000 steps or 10000, that gets to be a lot of 
 redundant calculation'''
 
-def fib_efficient(n,d):
-    if n in d:
-        return d[n]
-    else:
-        ans = fib_efficient(n-1, d) + fib_efficient(n-2, d)
-        d[n] = ans
-        return ans
+# Do a lookup first in case already calculated the value
+# modify dictionary as progress through function calls.
 
-d = {1:1, 2:2}
-print(fib_efficient(6,d))
+# def fib_efficient(n,d):
+#     if n in d:
+#         return d[n]
+#     else:
+#         ans = fib_efficient(n-1, d) + fib_efficient(n-2, d) # 'd' seems to denote the key of the dictionary in this context
+#         d[n] = ans #this sets the value of n-1 + n-2 to the index (key) in the dictionary before running recursively through the function again
+#         return ans
+
+# d = {1:1, 2:2}
+# print(fib_efficient(6,d))
+# print(d)
+
+#############################################################
+# CHAPTER 7 - TESTING, DEBUGGIN, EXCEPTIONS AND ASSERTIONS
+#################################################################
+
+'''The 'Try' and 'Except' clauses'''
+
+# a = int(input('tell me a number: ')) # Put a string in here to get the normal exception statement
+# b = int(input('Tell me another: '))
+# print('a / b = ' + str(a/b))
+# print('a + b = ' + str(a+b))
+
+# '''There is probably a more elegant way to limit this to 3 tries.  This is my brute-force method.'''
+
+# n = 1
+# while True and n < 4:
+#     try:
+#         a = int(input('Tell me a number: '))
+#         b = int(input('Tell me another number: '))
+#         print('a/b = ' + str(a/b))
+#     except:
+#         if n == 2:
+#             print('This is your last chance...')
+#         else:
+#             print('Bug in user input.  This needs to be a number.')
+#             print n
+#         n += 1
+#         continue
+
+'''You can also get specific with the type of exception:'''
+
+# n = 1
+# while True and n < 4:
+#     try:
+#         a = int(input('Tell me a number: '))
+#         b = int(input('Tell me another number: '))
+#         print('a/b = ' + str(a/b))
+#     except NameError:
+#         if n == 2:
+#             print('This is your last chance...')
+#         else:
+#             print('This needs to be a number.  Please try again.')
+#             # print n
+#         n += 1
+#         continue
+#     except ZeroDivisionError:
+#         if n == 2:
+#             print('This is your last chance...')
+#         else:
+#             print('You cannot divide a number by Zero. Please Try again.')
+#             # print n
+#         n += 1
+#         continue
+#     except:  # Catch all for all other exceptions in this case
+#         if n == 2:
+#             print('This is your last chance...')
+#         else:
+#             print('Something went wrong. Please try again.')
+#             # print n
+#         n += 1
+#         continue
+
+'''Pretty hacky demostration or raise exception'''
+
+def get_ratios(L1,L2):
+    '''Assumes: L1 and L2 are lists of equal length of numbers
+    Returns: A list containing L2[i]/L2[i]'''
+    ratios = []
+
+    for index in range(len(L1)):
+        try:
+            ratios.append(int(L1[index])/int(L2[index]))
+        except ZeroDivisionError:
+            ratios.append(float('nan')) # nan = not a number
+        except:
+            raise ValueError('get_ratios called with bad arg.  This needs to be a number')
+    return ratios
+
+first_list = []
+second_list = []
+
+for n in range(3):
+    first_list.append(raw_input('We\'re going to make a list of 3 numbers.  Enter a number:'))
+    n += 1
+
+for y in range(3):
+    second_list.append(raw_input('Were going to make a list of three more.  Enter a number:'))
+    y += 1
+
+my_ratios = get_ratios(first_list,second_list)
+
+for x in range(3):
+    print(my_ratios[x])
+
