@@ -723,33 +723,82 @@ redundant calculation'''
 
 '''Pretty hacky demostration or raise exception'''
 
-def get_ratios(L1,L2):
-    '''Assumes: L1 and L2 are lists of equal length of numbers
-    Returns: A list containing L2[i]/L2[i]'''
-    ratios = []
+# def get_ratios(L1,L2):
+#     '''Assumes: L1 and L2 are lists of equal length of numbers
+#     Returns: A list containing L2[i]/L2[i]'''
+#     ratios = []
 
-    for index in range(len(L1)):
-        try:
-            ratios.append(int(L1[index])/int(L2[index]))
-        except ZeroDivisionError:
-            ratios.append(float('nan')) # nan = not a number
-        except:
-            raise ValueError('get_ratios called with bad arg.  This needs to be a number')
-    return ratios
+#     for index in range(len(L1)):
+#         try:
+#             ratios.append(int(L1[index])/int(L2[index]))
+#         except ZeroDivisionError:
+#             ratios.append(float('nan')) # nan = not a number
+#         except:
+#             raise ValueError('get_ratios called with bad arg.  This needs to be a number')
+#     return ratios
 
-first_list = []
-second_list = []
+# first_list = []
+# second_list = []
 
-for n in range(3):
-    first_list.append(raw_input('We\'re going to make a list of 3 numbers.  Enter a number:'))
-    n += 1
+# for n in range(3):
+#     first_list.append(raw_input('We\'re going to make a list of 3 numbers.  Enter a number:'))
+#     n += 1
 
-for y in range(3):
-    second_list.append(raw_input('Were going to make a list of three more.  Enter a number:'))
-    y += 1
+# for y in range(3):
+#     second_list.append(raw_input('Were going to make a list of three more.  Enter a number:'))
+#     y += 1
 
-my_ratios = get_ratios(first_list,second_list)
+# my_ratios = get_ratios(first_list,second_list)
 
-for x in range(3):
-    print(my_ratios[x])
+# for x in range(3):
+#     print(my_ratios[x])
+
+'''another example of exceptions'''
+
+# my_class = [[['peter', 'parker'], [80.0, 70.0, 85.0]],[['bruce', 'wayne'], [100.0, 80.0, 74.0]],
+#             [['captain', 'america'], [8.0, 10.0, 96.0]],[['deadpool'], []]]
+
+# def get_stats(class_list):
+#     new_stats = []
+#     for elt in class_list:
+#         new_stats.append([elt[0], elt[1], avg(elt[1])])
+#     return new_stats
+
+# # def avg(grades):
+# #     try:
+# #         return sum(grades)/len(grades)
+# #     except ZeroDivisionError:
+
+# #         '''Dropping in 0.0 if no grades data is entered'''
+
+# #         print("Warning: no grades data")
+# #         return 0.0
+
+# # ALTERNATE USING ASSERTION ERRORS FOR AVG FUNCTION
+
+# def avg(grades):
+#     assert not len(grades) == 0, 'No grades data'
+#     return sum(grades)/len(grades)
+
+# print(get_stats(my_class))
+
+###############################################################################
+#
+#   OBJECT ORIENTATED PROGRAMMING - CREATING A CLASS AND INSTANCE OF AN OBJECT
+#
+###############################################################################
+
+class Coordinate(object):
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    def distance(self, other):
+        x_diff_sq = (self.x-other.x)**2
+        y_diff_sq = (self.y-other.y)**2
+        return (x_diff_sq + y_diff_sq)**0.5
+
+c = Coordinate(3,4)
+origin = Coordinate(0,0)
+print(c.x)
+print(origin.x)
 
