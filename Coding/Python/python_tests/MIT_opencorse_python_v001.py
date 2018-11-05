@@ -788,17 +788,104 @@ redundant calculation'''
 #
 ###############################################################################
 
-class Coordinate(object):
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-    def distance(self, other):
-        x_diff_sq = (self.x-other.x)**2
-        y_diff_sq = (self.y-other.y)**2
-        return (x_diff_sq + y_diff_sq)**0.5
+'''Creating a simple coordinate class to show how defining a class and calling an isntance works'''
 
-c = Coordinate(3,4)
-origin = Coordinate(0,0)
-print(c.x)
-print(origin.x)
+# class Coordinate(object):
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#     def distance(self, other):
+#         x_diff_sq = (self.x-other.x)**2
+#         y_diff_sq = (self.y-other.y)**2
+#         return (x_diff_sq + y_diff_sq)**0.5
 
+# c = Coordinate(3,4)
+# # origin = Coordinate(0,0)
+# # other_coordinate = Coordinate(1,2)
+# # print(c.x)
+# # print(origin.x)
+# # print(c.distance(origin))
+
+# print(c) 
+
+'''if you don't tell the class what to do with the print statement, it will \
+return the name of the class, type and hex of the memory address'''
+
+# class Coordinate(object):
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#     def __str__(self):
+#         return("The following object is an instance of the 'Coordinate' class.\n  Pos.x, Pos.y = " + str(self.x) + "," + str(self.y))
+#     def distance(self, other):
+#         x_diff_sq = (self.x-other.x)**2
+#         y_diff_sq = (self.y-other.y)**2
+#         return (x_diff_sq + y_diff_sq)**0.5
+
+# c = Coordinate(3,4)
+
+# print(c) 
+'''isinstance() is a special method (function), to let you know if an object is an isntance of a class.
+There is a another special method called issubclass() that lets you do the same thing for subclasses of something.'''
+
+# print(isinstance(c, Coordinate))
+
+# class Fraction(object):
+#     def __init__(self, num, denom):
+#         '''Num and denom are intergers'''
+#         assert type(num) == int and type(denom) == int
+#         self.num = num
+#         self.denom = denom
+#     def __str__(self):
+#         '''returns a string representation of self'''
+#         return str(self.num) + "/" + str(self.denom)
+#     def __add__(self, other):
+#         '''returns a new fraction representing...'''
+#         top = self.num * other.denom + self.denom * other.num
+#         bott = self.denom * other.denom
+#         return Fraction(top,bott)
+#     def _sub__(self, other):
+#         '''Returns a new fraction representing....'''
+#         top = self.num * other.denom - self.denom * other.num
+#         bott = self.denom * other.denom
+#         return Fraction(top, bott)
+#     def __float__(self):
+#         '''Returns a flaot value of the fraction'''
+#         return self.num/self.denom
+#     def inverse(self):
+#         '''Returns a new fraction representing...'''
+#         return Fraction(self.denom, self.num)
+
+# a = Fraction(1,4)
+# b = Fraction(3,4)
+# c = a + b # Because these are fraction objects, Python is going to see the '+' symbol and look to see if there is an __add__ override
+# print(c) 
+# # print(float(c)) # In Python 3.x this should return the same as below, but does not seem to want to swallow the overwritten attribute
+# print(float(Fraction.__float__(c))) # This should not need the first 'float' to make this a float.  Some funky 2.7x v 3.x stuff.
+# # print(float(b.inverse())) #Also should just be returning the inverse of the fractional pair, but there is some 2.7 int stuff at work here.
+
+###################################
+# GETTERS AND SETTERS
+###################################
+
+class Animal(object):
+    def __init__(self,age):
+        self.age = age
+        self.name = None
+    def get_age(self): # Getter
+        return self.age
+    def get_name(self):
+        return self.name # Getter
+    def set_age(self, newage):
+        self.age = newage
+    def set_name(self, newname = ""):
+        self.name = newname
+    def __str__(self):
+        return "animal"+str(self.name)+":"+str(self.age)
+
+a = Animal(3)
+print a.get_age()
+a.set_name("Tigger")
+print(a.get_name())
+a.set_age(15)
+print(a.get_name() + " has grown old and is now " + str(a.get_age()) + " years old!\n")
