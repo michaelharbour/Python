@@ -866,6 +866,8 @@ There is a another special method called issubclass() that lets you do the same 
 
 ###################################
 # GETTERS AND SETTERS
+#
+# AND SUBTYPES AND INHERITANCE
 ###################################
 
 class Animal(object):
@@ -883,9 +885,94 @@ class Animal(object):
     def __str__(self):
         return "animal"+str(self.name)+":"+str(self.age)
 
+class Cat(Animal):
+    def speak(self):
+        print("Meow")
+    def __str__(self):
+        return "cat:"+str(self.name)+":"+str(self.age)
+
+class Person(Animal):
+    def __init__(self, name, age):
+        Animal.__init__(self, age) # This looks up to the supertype and save's you the step of having to initialize each as it was already written there.
+        self.set_name(name)
+        self.friends = []
+    def get_friends(self): 
+        return self.friends
+    def add_friend(self, fname):
+        if fname not in self.friends:
+            self.friends.append(fname)
+    def speak(self):
+        print("hello")
+    def age_diff(self, other):
+        diff = self.age - other.age
+        print(str(abs(diff))+" year diffrence")
+    def __str__(self):
+        return "person:"+str(self.name)+":"+str(self.age)
+
+class Student(Person):
+    def __init__(self, name, age, major=None):
+        Person.__init__(self, name, age) # This looks up to the supertype and save's you the step of having to initialize each as it was already written there.
+        self.major = major
+    def change_major(self, major):
+        self.major = major
+    def speak(self):
+        r = random.random()
+        if r < 0.25:
+            print("I have homework")
+        elif 0.25 <= r < 0.5:
+            print("I need sleep")
+        elif 0.5 <= r < 0.75:
+            print("I should eat")
+        else:
+            print("I am watching tv")
+    def __str__(self):
+        return "student:"+str(self.name)+":"+str(self.age)+":"+str(self.major)
+
+
+# Some animal print statements
+
 a = Animal(3)
 print a.get_age()
 a.set_name("Tigger")
 print(a.get_name())
 a.set_age(15)
 print(a.get_name() + " has grown old and is now " + str(a.get_age()) + " years old!\n")
+
+# All the cat stuff
+
+b = Cat(9)
+b.set_name(raw_input('What is the name of your Cat?\n'))
+# print(b)
+# print(b.get_name() + "is a ")
+test = str(type(b))
+test1 = test.split(".")
+test2 = test1[1].split("'")
+print("My " + str(test2[0]) + "'s name is " + b.get_name() + " and he is " + str(b.get_age()) + " year's old!")
+
+# Person parts
+
+print("\n---- person tests ----")
+
+p1 = Person("jack", 30)
+p2 = Person("jill", 25)
+
+print(p1.get_name())
+print(p1.get_age())
+print(p2.get_name())
+print(p2.get_age())
+print(p1)
+p1.speak()
+p1.age_diff(p2)
+
+# Student Parts
+
+print("\n---- student tests ----")
+
+s1 = Student('alice', 20, 'CS')
+s2 = Student('beth', 18)
+
+print(s1)
+print(s1.get_name()+" says "+end=" ")
+s1.speak()
+print(s2.get_name()+" says "+end=" ")
+s2.speak()
