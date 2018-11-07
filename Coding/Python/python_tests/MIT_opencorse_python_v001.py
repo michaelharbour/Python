@@ -1,5 +1,7 @@
 '''This is just a test page to work out python as I go through various exercises'''
 
+from __future__ import print_function
+
 ###########################
 # Assigning values in Python and simple arithmetic
 ###########################
@@ -909,6 +911,7 @@ class Person(Animal):
     def __str__(self):
         return "person:"+str(self.name)+":"+str(self.age)
 
+import random
 class Student(Person):
     def __init__(self, name, age, major=None):
         Person.__init__(self, name, age) # This looks up to the supertype and save's you the step of having to initialize each as it was already written there.
@@ -928,51 +931,112 @@ class Student(Person):
     def __str__(self):
         return "student:"+str(self.name)+":"+str(self.age)+":"+str(self.major)
 
+class Rabbit(Animal):
+    tag = 1 # This is a class variable
+    def __init__(self, age, parent1=None, parent2=None):
+        Animal.__init__(self, age)
+        self.parent1 = parent1
+        self.parent2 = parent2
+        self.rid = Rabbit.tag # Here we are creating an 'instance variable' that is accessing the class variable above
+        Rabbit.tag += 1
+    def __add__(self, other):
+        # will return object of same type as this class
+        return Rabbit(0, self, other)
+    def __eq__(self, other):
+        parents_same = self.parent1.rid == other.parent1.rid \
+                       and self.parent2.rid == other.parent2.rid
+        parents_opposite = self.parent2.rid1
+    def __str__(self):
+        return "rabbit:"+ self.get_rid()
+    def get_rid(self):                #  GETTER METHODS
+        return str(self.rid).zfill(3) # This does number padding and is the same as %03d
+    def get_parent1(self):
+        return self.parent1
+    def get_parent2(self):
+        return self.parent2 
 
-# Some animal print statements
+# # Some animal print statements
 
-a = Animal(3)
-print a.get_age()
-a.set_name("Tigger")
-print(a.get_name())
-a.set_age(15)
-print(a.get_name() + " has grown old and is now " + str(a.get_age()) + " years old!\n")
+# a = Animal(3)
+# print(a.get_age())
+# a.set_name("Tigger")
+# print(a.get_name())
+# a.set_age(15)
+# print(a.get_name() + " has grown old and is now " + str(a.get_age()) + " years old!\n")
 
-# All the cat stuff
+# # All the cat stuff
 
-b = Cat(9)
-b.set_name(raw_input('What is the name of your Cat?\n'))
-# print(b)
-# print(b.get_name() + "is a ")
-test = str(type(b))
-test1 = test.split(".")
-test2 = test1[1].split("'")
-print("My " + str(test2[0]) + "'s name is " + b.get_name() + " and he is " + str(b.get_age()) + " year's old!")
+# b = Cat(9)
+# b.set_name(raw_input('What is the name of your Cat?\n'))
+# # print(b)
+# # print(b.get_name() + "is a ")
+# test = str(type(b))
+# test1 = test.split(".")
+# test2 = test1[1].split("'")
+# print("My " + str(test2[0]) + "'s name is " + b.get_name() + " and he is " + str(b.get_age()) + " year's old!")
 
-# Person parts
+# # Person parts
 
-print("\n---- person tests ----")
+# print("\n---- person tests ----")
 
-p1 = Person("jack", 30)
-p2 = Person("jill", 25)
+# p1 = Person("jack", 30)
+# p2 = Person("jill", 25)
 
-print(p1.get_name())
-print(p1.get_age())
-print(p2.get_name())
-print(p2.get_age())
-print(p1)
-p1.speak()
-p1.age_diff(p2)
+# print(p1.get_name())
+# print(p1.get_age())
+# print(p2.get_name())
+# print(p2.get_age())
+# print(p1)
+# p1.speak()
+# p1.age_diff(p2)
 
-# Student Parts
+"""Student Parts"""
 
-print("\n---- student tests ----")
+# print("\n---- student tests ----")
 
-s1 = Student('alice', 20, 'CS')
-s2 = Student('beth', 18)
+# s1 = Student('alice', 20, 'CS')
+# s2 = Student('beth', 18)
 
-print(s1)
-print(s1.get_name()+" says "+end=" ")
-s1.speak()
-print(s2.get_name()+" says "+end=" ")
-s2.speak()
+# print(s1)
+# print(s2)
+# print(s1.get_name(),"says:", end = " ")
+# s1.speak()
+# print(s2.get_name(),"says:", end = " ")
+# s2.speak()
+
+# Rabbit Parts
+
+print("\n---- rabbit tests ----")
+print("---- testing creating rabbits ----")
+
+r1 = Rabbit(3)
+r2 = Rabbit(4)
+r3 = Rabbit(5)
+
+# print(r1.get_rid())
+# print(r2.get_rid())
+# print(r3.get_rid())
+
+print("r1:", r1)
+print("r2:", r2)
+print("r3:", r3)
+
+print("r1 parent1:", r1.get_parent1())
+print("r1 parent2:", r1.get_parent2())
+
+print("---- testing rabbit addition ----")
+r4 = r1 + r2 # r1.__add__(r2)
+print("r1:", r1)
+print("r2:", r2)
+print("r4:", r4)
+print("r4 parent1:", r4.get_parent1())
+print("r4 parent2:", r4.get_parent2())
+
+# print("---- testing rabbit equality ----")
+# r5 = r3 + r4
+# r6 = r4 + r3
+# print("r3:", r3)
+# print("r4:", r4)
+# print("r5:", r5)
+# print("r6:", r6)
+
