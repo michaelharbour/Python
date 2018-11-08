@@ -872,88 +872,90 @@ There is a another special method called issubclass() that lets you do the same 
 # AND SUBTYPES AND INHERITANCE
 ###################################
 
-class Animal(object):
-    def __init__(self,age):
-        self.age = age
-        self.name = None
-    def get_age(self): # Getter
-        return self.age
-    def get_name(self):
-        return self.name # Getter
-    def set_age(self, newage):
-        self.age = newage
-    def set_name(self, newname = ""):
-        self.name = newname
-    def __str__(self):
-        return "animal"+str(self.name)+":"+str(self.age)
+# class Animal(object):
+#     def __init__(self,age):
+#         self.age = age
+#         self.name = None
+#     def get_age(self): # Getter
+#         return self.age
+#     def get_name(self):
+#         return self.name # Getter
+#     def set_age(self, newage):
+#         self.age = newage
+#     def set_name(self, newname = ""):
+#         self.name = newname
+#     def __str__(self):
+#         return "animal"+str(self.name)+":"+str(self.age)
 
-class Cat(Animal):
-    def speak(self):
-        print("Meow")
-    def __str__(self):
-        return "cat:"+str(self.name)+":"+str(self.age)
+# class Cat(Animal):
+#     def speak(self):
+#         print("Meow")
+#     def __str__(self):
+#         return "cat:"+str(self.name)+":"+str(self.age)
 
-class Person(Animal):
-    def __init__(self, name, age):
-        Animal.__init__(self, age) # This looks up to the supertype and save's you the step of having to initialize each as it was already written there.
-        self.set_name(name)
-        self.friends = []
-    def get_friends(self): 
-        return self.friends
-    def add_friend(self, fname):
-        if fname not in self.friends:
-            self.friends.append(fname)
-    def speak(self):
-        print("hello")
-    def age_diff(self, other):
-        diff = self.age - other.age
-        print(str(abs(diff))+" year diffrence")
-    def __str__(self):
-        return "person:"+str(self.name)+":"+str(self.age)
+# class Person(Animal):
+#     def __init__(self, name, age):
+#         Animal.__init__(self, age) # This looks up to the supertype and save's you the step of having to initialize each as it was already written there.
+#         self.set_name(name)
+#         self.friends = []
+#     def get_friends(self): 
+#         return self.friends
+#     def add_friend(self, fname):
+#         if fname not in self.friends:
+#             self.friends.append(fname)
+#     def speak(self):
+#         print("hello")
+#     def age_diff(self, other):
+#         diff = self.age - other.age
+#         print(str(abs(diff))+" year diffrence")
+#     def __str__(self):
+#         return "person:"+str(self.name)+":"+str(self.age)
 
-import random
-class Student(Person):
-    def __init__(self, name, age, major=None):
-        Person.__init__(self, name, age) # This looks up to the supertype and save's you the step of having to initialize each as it was already written there.
-        self.major = major
-    def change_major(self, major):
-        self.major = major
-    def speak(self):
-        r = random.random()
-        if r < 0.25:
-            print("I have homework")
-        elif 0.25 <= r < 0.5:
-            print("I need sleep")
-        elif 0.5 <= r < 0.75:
-            print("I should eat")
-        else:
-            print("I am watching tv")
-    def __str__(self):
-        return "student:"+str(self.name)+":"+str(self.age)+":"+str(self.major)
+# import random
+# class Student(Person):
+#     def __init__(self, name, age, major=None):
+#         Person.__init__(self, name, age) # This looks up to the supertype and save's you the step of having to initialize each as it was already written there.
+#         self.major = major
+#     def change_major(self, major):
+#         self.major = major
+#     def speak(self):
+#         r = random.random()
+#         if r < 0.25:
+#             print("I have homework")
+#         elif 0.25 <= r < 0.5:
+#             print("I need sleep")
+#         elif 0.5 <= r < 0.75:
+#             print("I should eat")
+#         else:
+#             print("I am watching tv")
+#     def __str__(self):
+#         return "student:"+str(self.name)+":"+str(self.age)+":"+str(self.major)
 
-class Rabbit(Animal):
-    tag = 1 # This is a class variable
-    def __init__(self, age, parent1=None, parent2=None):
-        Animal.__init__(self, age)
-        self.parent1 = parent1
-        self.parent2 = parent2
-        self.rid = Rabbit.tag # Here we are creating an 'instance variable' that is accessing the class variable above
-        Rabbit.tag += 1
-    def __add__(self, other):
-        # will return object of same type as this class
-        return Rabbit(0, self, other)
-    def __eq__(self, other):
-        parents_same = self.parent1.rid == other.parent1.rid \
-                       and self.parent2.rid == other.parent2.rid
-        parents_opposite = self.parent2.rid1
-    def __str__(self):
-        return "rabbit:"+ self.get_rid()
-    def get_rid(self):                #  GETTER METHODS
-        return str(self.rid).zfill(3) # This does number padding and is the same as %03d
-    def get_parent1(self):
-        return self.parent1
-    def get_parent2(self):
-        return self.parent2 
+# class Rabbit(Animal):
+#     tag = 1 # This is a class variable
+#     def __init__(self, age, parent1=None, parent2=None):
+#         Animal.__init__(self, age)
+#         self.parent1 = parent1
+#         self.parent2 = parent2
+#         self.rid = Rabbit.tag # Here we are creating an 'instance variable' that is accessing the class variable above
+#         Rabbit.tag += 1
+#     def __add__(self, other):
+#         # will return object of same type as this class
+#         return Rabbit(0, self, other)
+#     def __eq__(self, other):
+#         parents_same = self.parent1.rid == other.parent1.rid \
+#                        and self.parent2.rid == other.parent2.rid
+#         parents_opposite = self.parent2.rid == other.parent1.rid \
+#                        and self.parent1.rid == other.parent2.rid
+#         return parents_same or parents_opposite
+#     def __str__(self):
+#         return "rabbit:"+ self.get_rid()
+#     def get_rid(self):                #  GETTER METHODS
+#         return str(self.rid).zfill(3) # This does number padding and is the same as %03d
+#     def get_parent1(self):
+#         return self.parent1
+#     def get_parent2(self):
+#         return self.parent2 
 
 # # Some animal print statements
 
@@ -1006,31 +1008,31 @@ class Rabbit(Animal):
 
 # Rabbit Parts
 
-print("\n---- rabbit tests ----")
-print("---- testing creating rabbits ----")
+# print("\n---- rabbit tests ----")
+# print("---- testing creating rabbits ----")
 
-r1 = Rabbit(3)
-r2 = Rabbit(4)
-r3 = Rabbit(5)
+# r1 = Rabbit(3)
+# r2 = Rabbit(4)
+# r3 = Rabbit(5)
 
-# print(r1.get_rid())
-# print(r2.get_rid())
-# print(r3.get_rid())
+# # print(r1.get_rid())
+# # print(r2.get_rid())
+# # print(r3.get_rid())
 
-print("r1:", r1)
-print("r2:", r2)
-print("r3:", r3)
+# print("r1:", r1)
+# print("r2:", r2)
+# print("r3:", r3)
 
-print("r1 parent1:", r1.get_parent1())
-print("r1 parent2:", r1.get_parent2())
+# print("r1 parent1:", r1.get_parent1())
+# print("r1 parent2:", r1.get_parent2())
 
-print("---- testing rabbit addition ----")
-r4 = r1 + r2 # r1.__add__(r2)
-print("r1:", r1)
-print("r2:", r2)
-print("r4:", r4)
-print("r4 parent1:", r4.get_parent1())
-print("r4 parent2:", r4.get_parent2())
+# print("---- testing rabbit addition ----")
+# r4 = r1 + r2 # r1.__add__(r2)
+# print("r1:", r1)
+# print("r2:", r2)
+# print("r4:", r4)
+# print("r4 parent1:", r4.get_parent1())
+# print("r4 parent2:", r4.get_parent2())
 
 # print("---- testing rabbit equality ----")
 # r5 = r3 + r4
@@ -1039,4 +1041,38 @@ print("r4 parent2:", r4.get_parent2())
 # print("r4:", r4)
 # print("r5:", r5)
 # print("r6:", r6)
+# print("r5 and r6 have the same parents?", r5 == r6)
+# print("r4 and r6 have the same parents?", r4 == r6)
+
+
+#############################################################
+# UNDERSTANDING PROGRAM EFFICIENCY
+#############################################################
+
+# METHODS FOR MEASURING EFFICIENCY OF A PROGRAM
+
+'''Timing method'''
+
+# import time
+
+# def c_to_f(c):
+#     return c*9/5 + 32
+
+# t0 = time.clock()
+# c_to_f(100000)
+# t1 = time.clock() - t0
+# print("t =", t1)
+
+'''counting operations'''
+
+# def c_to_f(c):
+#     return c*9/5 + 32 # 1 operation
+
+# def mysum(x):
+#     total = 0 # 1 operation
+#     for i in range(x+1):
+#         total += i # 2 operations
+#     return total
+
+'''Thus, we can devine that mysum = 1 + 3x operations, which can let us see the scale of implementation'''
 
