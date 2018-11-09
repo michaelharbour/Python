@@ -1076,3 +1076,64 @@ There is a another special method called issubclass() that lets you do the same 
 
 '''Thus, we can devine that mysum = 1 + 3x operations, which can let us see the scale of implementation'''
 
+'''Order of Complexity, linear search on unsorted list - O(n)'''
+
+# def linear_search(L,e):
+#     found = False
+#     ops = 0
+#     for i in range(len(L)):
+#         ops += 1
+#         if e == L[i]:
+#             found = True
+#     return found, ops
+
+# mylist = [1,2,3,4,5,6,7,8,9,10]
+# e = 10
+
+# print(linear_search(mylist,e))
+
+# # This type of search must look through all the elements (worst case) to determine if it is there
+
+'''Quadratic list, order of complexity - O(n^2)'''
+
+# def isSubset(L1,L2):
+#     ops = 0
+#     for e1 in L1:
+#         matched  = False
+#         for e2 in L2:
+#             ops += 1
+#             if e1 == e2:
+#                 matched = True
+#                 break
+#         if not matched:
+#             continue
+#     return True, ops
+
+# mylist = [1,2,3,4,5,6,7,8,9,10]
+# mylist2 = [19,18,17,16,15,14,13,12,11,10]
+
+# print(isSubset(mylist,mylist2))
+
+'''Quadratic list - intersection, order of complexity - O(n^2)'''
+
+#Find intersection of two lists, return a list with each element appearing only once
+
+def intersect(L1, L2):
+    ops = 0
+    tmp = []
+    for e1 in L1:
+        for e2 in L2:
+            ops += 1
+            if e1 == e2:
+                tmp.append(e1)
+    res = []
+    for e in tmp:
+        ops += 1
+        if not(e in res):
+            res.append(e)
+    return res, ops
+
+mylist = [1,2,3,4,5,6,7,8,9,10]
+mylist2 = [15,14,13,12,11,10,9,8,7,6]
+
+print(intersect(mylist, mylist2))
