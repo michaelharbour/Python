@@ -1118,22 +1118,41 @@ There is a another special method called issubclass() that lets you do the same 
 
 #Find intersection of two lists, return a list with each element appearing only once
 
-def intersect(L1, L2):
-    ops = 0
-    tmp = []
-    for e1 in L1:
-        for e2 in L2:
-            ops += 1
-            if e1 == e2:
-                tmp.append(e1)
-    res = []
-    for e in tmp:
-        ops += 1
-        if not(e in res):
-            res.append(e)
-    return res, ops
+# def intersect(L1, L2):
+#     ops = 0
+#     tmp = []
+#     for e1 in L1:
+#         for e2 in L2:
+#             ops += 1
+#             if e1 == e2:
+#                 tmp.append(e1)
+#     res = []
+#     for e in tmp:
+#         ops += 1
+#         if not(e in res):
+#             res.append(e)
+#     return res, ops
 
-mylist = [1,2,3,4,5,6,7,8,9,10]
-mylist2 = [15,14,13,12,11,10,9,8,7,6]
+# mylist = [1,2,3,4,5,6,7,8,9,10]
+# mylist2 = [15,14,13,12,11,10,9,8,7,6]
 
-print(intersect(mylist, mylist2))
+# print(intersect(mylist, mylist2))
+
+#########################################
+# BISECTION SEARCH (O(log n) Order of growth [log n returns the exponents of a value and is between contant and linear orders of complexity]
+
+def bisect_search1(L,e):
+    # if L == []:
+    #     return False, L
+    # if len(L) == 1:
+    #     return L[0] == e
+    # else:
+    half = len(L)//2
+    if L[half] > e:
+        return bisect_search1(L[:half],e)
+    else:
+        return bisect_search1(L[half:],e)
+
+qwerty = ['q','w','e','r','t','y','u','i','o','p','a','s','d','f','g','h','j','k','l','z','x','c','v','b','n','m']
+
+print(bisect_search1(qwerty,'m'))
