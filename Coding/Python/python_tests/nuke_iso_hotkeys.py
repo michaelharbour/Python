@@ -1,5 +1,4 @@
 # Bring in Nuke hotkeys
-
 import string
 import platform
 
@@ -21,12 +20,20 @@ for x in myAZ:
   mySearch = prefix + "+" + x
   for item in mamHK:
       if mySearch in item:
-        print(mySearch + " is already in use.\n")
+        #print(mySearch + " is already in use.\n")
         myUsedLetters.append(x)
 
 # Print out a List of Mammal-style hotkeys not in use
 
-nuke.message("These letters are NOT in use: %r" % (list(set(myUsedLetters) ^ set(myAZ))))
+unused = list(set(myUsedLetters) ^ set(myAZ))
+avail_hotkeys = []
+for e in unused:
+  f = prefix + "+" + e
+  avail_hotkeys.append(f)
+
+nuke.message("The following Mammal Hotkeys \nare available to you:\n\n"+"\n\t".join(avail_hotkeys))
+
+#nuke.message("These letters are NOT in use: %r" % (list(set(myUsedLetters) ^ set(myAZ))))
 
 
 '''
