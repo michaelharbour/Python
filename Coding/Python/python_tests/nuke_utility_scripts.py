@@ -34,3 +34,36 @@ NoOp {
  addUserKnob {22 iso_mammal_hotkeys l "Available Mammal Hotkeys" t "This will reveal all of the Ctrl+Alt+Shift hotkeys not currently in use." T "# Bring in Nuke hotkeys\nimport string\nimport platform\n\nhostOS=platform.system()\nif \"Darwin\" in hostOS:\n    prefix = \"Cmd+Alt+Shift\"\nelse:\n    prefix = \"Ctrl+Alt+Shift\"\n\nmamHK = \[hotkey.strip() for hotkey in nuke.hotkeys().split(\"\\n\") if prefix in hotkey]\n\n# Cycle through A-Z comps and make a list of\n# ones that do not already exist.\n\nmyAZ = list(string.ascii_uppercase)\nmyUsedLetters = \[]\n\nfor x in myAZ:\n  mySearch = prefix + \"+\" + x\n  for item in mamHK:\n      if mySearch in item:\n        #print(mySearch + \" is already in use.\\n\")\n        myUsedLetters.append(x)\n\n# Print out a List of Mammal-style hotkeys not in use\n\nunused = list(set(myUsedLetters) ^ set(myAZ))\navail_hotkeys = \[]\nfor e in unused:\n  f = prefix + \"+\" + e\n  avail_hotkeys.append(f)\n\nnuke.message(\"The following Mammal Hotkeys \\nare available to you:\\n\\n\"+\"\\n\\t\".join(avail_hotkeys))\n\n#nuke.message(\"These letters are NOT in use: %r\" % (list(set(myUsedLetters) ^ set(myAZ))))" +STARTLINE}
  addUserKnob {22 displayChannels l "Display Selected Node's Channels" t "Open's a pannel and shows the channels that exist in the selected node(s)" T "def showChannels():\n  return '\\n'.join(nuke.thisNode().channels())\n\nnode = nuke.selectedNode()\nnuke.display('showChannels()', node, 'show channels for %s' % node.name())" +STARTLINE}
 }
+
+# Select Class of Transform Node that you would like to reverse the motion blur values on
+# and chnage all motionblur values from 1 to 0 or vice versa, leaving those values between 0 and 1 unchanged
+
+# Get the Class of nodes that the user wants to change the motion blur values on
+
+txt = nuke.getInput('Enter the type of nodes that you \nwant to reverse the\nmotion blur on.', '')
+
+if txt or txt == 'all':
+  x = nuke.allNodes(txt)
+  unchanged = {} # Create a key:value empty dict to retain Tranform nodes w/ mb > 0 && < 1
+
+  # Cycle through all Transform nodes
+  for i in x:
+    y = i.knob('motionblur').getValue()
+    myName = i.knob('name').getValue()
+    if y == 1:
+      #print('one')
+      i.knob('motionblur').setValue(0)
+    elif y == 0:
+      #print('zero')
+      i.knob('motionblur').setValue(1)
+    else:
+      pull_value = str(y)
+      unchanged.update({myName + " is unchanged.  MB = " : pull_value})
+
+# Print the unchanged motion blur values and corresponding nodes to a pop up
+
+myString = ''
+for k, value in unchanged.iteritems():
+  myString += "\n" + k + value + " \n"
+
+nuke.message(myString)
