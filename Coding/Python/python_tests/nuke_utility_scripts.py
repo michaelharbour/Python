@@ -35,8 +35,8 @@ NoOp {
  addUserKnob {22 displayChannels l "Display Selected Node's Channels" t "Open's a pannel and shows the channels that exist in the selected node(s)" T "def showChannels():\n  return '\\n'.join(nuke.thisNode().channels())\n\nnode = nuke.selectedNode()\nnuke.display('showChannels()', node, 'show channels for %s' % node.name())" +STARTLINE}
 }
 
-# Select Class of Transform Node that you would like to reverse the motion blur values on
-# and chnage all motionblur values from 1 to 0 or vice versa, leaving those values between 0 and 1 unchanged
+S
+# REVERSE MOTIONBLUR KNOB VALUE IN SELECTED CLASS
 
 # Get the Class of nodes that the user wants to change the motion blur values on
 
