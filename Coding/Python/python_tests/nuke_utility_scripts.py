@@ -35,7 +35,7 @@ NoOp {
  addUserKnob {22 displayChannels l "Display Selected Node's Channels" t "Open's a pannel and shows the channels that exist in the selected node(s)" T "def showChannels():\n  return '\\n'.join(nuke.thisNode().channels())\n\nnode = nuke.selectedNode()\nnuke.display('showChannels()', node, 'show channels for %s' % node.name())" +STARTLINE}
 }
 
-S
+
 # REVERSE MOTIONBLUR KNOB VALUE IN SELECTED CLASS
 
 # Get the Class of nodes that the user wants to change the motion blur values on
@@ -67,3 +67,28 @@ for k, value in unchanged.iteritems():
   myString += "\n" + k + value + " \n"
 
 nuke.message(myString)
+
+# GENERATE CAMERA, SCANLINERENDER SETUP FROM PYTHON
+
+# Create a camera scene exercize
+
+print(nuke.selectedNode().Class())
+
+a = nuke.createNode('Sphere', inpanel=False)
+b = nuke.createNode('Scene', inpanel=False)
+b.knob('selected').setValue(False); b.knob('tile_color').setValue(4194049)
+
+c = nuke.createNode('NoOp',inpanel=False); c.knob('name').setValue('Control')
+c.knob('selected').setValue(False)
+myArray = nuke.Array_Knob('myInt', 'Integer')
+c.addKnob(myArray)
+
+a.knob('uniform_scale').setExpression('parent.Control.myInt')
+
+d = nuke.createNode('ScanlineRender', inpanel=False)
+d.knob('selected').setValue(False)
+
+e = nuke.createNode('Camera', inpanel=False)
+
+d.setInput(2, e)
+d.setInput(1, b)
