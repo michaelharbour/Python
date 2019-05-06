@@ -72,16 +72,21 @@ nuke.message(myString)
 
 # Create a camera scene exercize
 
-print(nuke.selectedNode().Class())
+#print(nuke.selectedNode().Class())
 
 a = nuke.createNode('Sphere', inpanel=False)
 b = nuke.createNode('Scene', inpanel=False)
-b.knob('selected').setValue(False); b.knob('tile_color').setValue(4194049)
+clr = nuke.getColor()
+b.knob('selected').setValue(False); b.knob('tile_color').setValue(clr)
 
-c = nuke.createNode('NoOp',inpanel=False); c.knob('name').setValue('Control')
+user_scale = float(nuke.getInput('Enter the diameter of your sphere:'))
+
+c = nuke.createNode('NoOp','name Control',inpanel=False)
 c.knob('selected').setValue(False)
 myArray = nuke.Array_Knob('myInt', 'Integer')
 c.addKnob(myArray)
+c.knob('myInt').setValue(user_scale)
+
 
 a.knob('uniform_scale').setExpression('parent.Control.myInt')
 
@@ -92,3 +97,8 @@ e = nuke.createNode('Camera', inpanel=False)
 
 d.setInput(2, e)
 d.setInput(1, b)
+
+for n in nuke.allNodes():
+  nuke.autoplaceSnap(n)
+
+nuke.message("<font color='yellow'><b>All nodes have been successfully created</b>")
