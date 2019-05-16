@@ -102,3 +102,53 @@ for n in nuke.allNodes():
   nuke.autoplaceSnap(n)
 
 nuke.message("<font color='yellow'><b>All nodes have been successfully created</b>")
+
+
+# MASS-INSERT NEW NODES ABOVE EXISITNG NODES USING NUKE.DEPENDENCIES()
+'''Note: Write nodes need to be connected to script tree for dependencies() to work properly '''
+
+ww=nuke.allNodes('Write') #We are looking for all Write nodes in our script
+for a in ww:
+  for y in a.dependencies():
+    print(y.name())
+    y.knob('selected').setValue(True)
+    myCrop = nuke.createNode('Crop', inpanel=False)
+    myCrop.knob('crop').setValue(False)
+    sh=nuke.createNode('Shuffle', inpanel=False)
+    sh.knob('selected').setValue(False)
+for k in ww:
+  nuke.autoplace(k) #Tidy up the node tree so the new nodes are in-line 
+
+  '''another example of the same concept'''
+
+  ww = nuke.allNodes('Write')
+for a in ww:
+  for b in a.dependencies():
+    b.knob('selected').setValue(True)
+    c = nuke.createNode('Crop', inpanel=False)
+    c.knob('box').setExpression('format.w', 2);c.knob('box').setExpression('format.h', 3);
+    d = nuke.createNode('Remove', inpanel=False)
+    d.knob('channels').setValue('alpha')
+    d.knob('selected').setValue(False)
+for e in ww:
+  nuke.autoplace(e)   
+
+
+# USING LEN() IN YOUR SCRIPT TO IDENTIFY THE NUMBER OF NODES OF A CERTAIN TYPE
+
+userInput = nuke.getInput('What type of nodes do you want to know the name of?').lower().capitalize()
+myNum =  n=len(nuke.allNodes(myInput))
+
+nuke.message("There are %i %s nodes in the script" % (myNum, userInput))
+
+
+# GRABBING USER INPUT USING getInput() TO DRIVE SOME RESULT OVER THE SCRIPT
+
+typeNode = nuke.getInput('What type of nodes do you want to change the font size for?').lower().capitalize()
+fontSize = int(nuke.getInput('What size font would you like?'))
+
+a = nuke.allNodes(typeNode)
+for b in a:
+  b.knob('note_font_size').setValue(fontSize)
+
+
