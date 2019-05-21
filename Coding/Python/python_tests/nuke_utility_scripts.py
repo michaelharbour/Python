@@ -166,5 +166,65 @@ nuke.message("The total number of %s nodes in this script are %i." % (myType, le
 '''Create a Python script that counts all selected nodes, 
 then warns the user the last node will be deleted and then does it.'''
 
+count = []
+for x in nuke.selectedNodes():
+    count.append(x)
 
-'''This is a test'''
+myLen = len(count)
+nuke.message("There are %i nodes selected.\nI am going to remove the last in the list" % myLen)
+
+del count[-1]
+
+newLen = len(count)
+
+nuke.message("There are now %i nodes in the list" % newLen)
+
+
+'''Create a Python script that delete all shuffle nodes in a script. This is something yous
+hould be already familiar with since we did something similar with the basic functions we
+already covered back to the first lesson, so please try with it and then provide a different
+solution by using lists.'''
+
+for n in nuke.allNodes('Shuffle'):
+  nuke.delete(n)
+
+# Or, using a list to cull these nodes 1st...
+
+lis = []
+for n in nuke.allNodes('Shuffle'):
+  lis.append(n)
+
+print(lis)
+
+for i in lis:
+  nuke.delete(i)
+
+
+  '''  why not a further exercise ? Don't worry this is going to be very easy:
+  just re-build the selection tool we have created but this time instead of creating 
+  3 buttons intoa NoOp nodes  just create menus on top of your nuke interface.That's it !'''
+
+  lis = []
+
+def mySelect():
+  for i in nuke.selectedNodes():
+    lis.append(i)
+
+  print(lis)
+
+def myAppend():
+  for i in nuke.selectedNodes():
+    lis.append(i)
+
+  print(lis)
+
+def reSelect():
+  for i in lis:
+    i.knob('selected').setValue(True)
+  
+
+menubar = nuke.menu("Nuke")
+m = menubar.addMenu("Michael Test")
+m.addCommand("Select Nodes for List", "mySelect()")
+m.addCommand("Add Nodes to List", "myAppend()")
+m.addCommand("Selected Nodes in List", "reSelect()")
