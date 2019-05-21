@@ -141,7 +141,6 @@ myNum =  n=len(nuke.allNodes(myInput))
 
 nuke.message("There are %i %s nodes in the script" % (myNum, userInput))
 
-
 # GRABBING USER INPUT USING getInput() TO DRIVE SOME RESULT OVER THE SCRIPT
 
 typeNode = nuke.getInput('What type of nodes do you want to change the font size for?').lower().capitalize()
