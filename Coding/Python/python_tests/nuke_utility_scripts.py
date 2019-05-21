@@ -152,3 +152,16 @@ for b in a:
   b.knob('note_font_size').setValue(fontSize)
 
 
+# LESSON 3 PYTHON SCRIPTING FOR SMART AND CURIOUS COMPOSITORS 'HOMEWORK'
+
+'''create a Python script that select all grade nodes in a script, 
+creates a list and returns with the total number.'''
+
+myList = []
+myType = 'Grade'
+for n in nuke.allNodes(myType):
+  myList.append(n)
+
+nuke.message("The total number of %s nodes in this script are %i." % (myType, len(myList)) )
+
+
