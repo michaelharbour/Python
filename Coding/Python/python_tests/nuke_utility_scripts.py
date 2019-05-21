@@ -197,6 +197,10 @@ for n in nuke.allNodes('Shuffle'):
 print(lis)
 
 for i in lis:
+  # if you want to just put the 'name' in the list you would use the nuke.toNode()
+  # e.g. n = i.knob('name').value()
+  #      o = nuke.toNode(n)
+  #      nuke.delete(o)
   nuke.delete(i)
 
 
@@ -228,3 +232,31 @@ m = menubar.addMenu("Michael Test")
 m.addCommand("Select Nodes for List", "mySelect()")
 m.addCommand("Add Nodes to List", "myAppend()")
 m.addCommand("Selected Nodes in List", "reSelect()")
+
+
+# QUICK AND DIRTY EXERCIZES USIGN MUKE.GETINPUT()
+
+'''User selects nodes to extract from tree by name'''
+
+rn=nuke.getInput("What type of nodes would you like to extract?", 'Be sure to capitalize your choice.')
+
+for i in nuke.allNodes():
+  i.knob('selected').setValue(False)
+
+for i in nuke.allNodes(rn):
+  i.knob('selected').setValue(True)
+  nuke.extractSelected()
+  nuke.autoplace(i)
+  i.knob('selected').setValue(False)
+
+'''A Simple Path Replacer that will move to affect all Read nodes'''
+
+import os
+
+inpa=nuke.getInput("path replacer", "type the path you want to replace")
+inpb=nuke.getInput("path replacer", "type your new path")
+readnds = nuke.allNodes("Read")
+for x in readnds:
+  pth = x.knob('file').value()
+  npth = pth.replace(inpa,inpb)
+  x.knob('file').setValue(npth)
