@@ -163,4 +163,8 @@ for n in nuke.allNodes(myType):
 
 nuke.message("The total number of %s nodes in this script are %i." % (myType, len(myList)) )
 
+'''Create a Python script that counts all selected nodes, 
+then warns the user the last node will be deleted and then does it.'''
 
+
+'''This is a test'''
